@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTrigger } from "@/components
 import Image from "next/image";
 import Logo from "@/public/logo.png";
 import { signIn } from "../lib/auth";
+import { GithubAuthButton, GoogleAuthButton } from "./SubmitButtons";
 
 export function AuthModal() {
     return (
@@ -20,9 +21,14 @@ export function AuthModal() {
                         "use server"
                         await signIn("google");
                     }} className="w-full">
-                        <Button className="w-full">Sign in with Google</Button>
+                        <GoogleAuthButton />
                     </form>
-                    <Button>Sign in with Github</Button>
+                    <form action={async()=>{
+                        "use server"
+                        await signIn("github");
+                    }} className="w-full">
+                        <GithubAuthButton />
+                    </form>
                 </div>
             </DialogContent>
         </Dialog>
